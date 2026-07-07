@@ -6,7 +6,7 @@
  * @invite hFuY8DfDGK
  * @authorLink https://github.com/nicola02nb
  * @source https://github.com/nicola02nb/BetterDiscord-Stuff/tree/main/Plugins/CompleteDiscordQuest
- * @updateUrl https://raw.githubusercontent.com/nicola02nb/BetterDiscord-Stuff/refs/heads/main/Plugins/CompleteDiscordQuest/CompleteDiscordQuest.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/naustagic/BetterDiscord-Stuff/refs/heads/main/Plugins/CompleteDiscordQuest/CompleteDiscordQuest.plugin.js
  */
 
 // Porting of https://gist.github.com/aamiaa/204cd9d42013ded9faf646fae7f89fbb for betterdiscord
