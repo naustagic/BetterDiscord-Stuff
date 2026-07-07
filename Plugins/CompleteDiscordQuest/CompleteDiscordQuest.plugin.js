@@ -64,7 +64,7 @@ const { Webpack, Data, UI, Patcher, DOM, React, ReactUtils, Components, Utils, P
 const { Filters } = Webpack;
 const [DiscordModules, ApplicationStreamingStore, RunningGameStore, QuestsStore,
     ChannelStore, GuildChannelStore, RestApi, QuestApplyAction, QuestLocationMap,
-    QuestIcon, { navigateToQuestHome }, CountBadge,
+    QuestIcon, NavigateModule, CountBadge,
     windowArea, SettingsBarModule, trailingModule,
     SettingsBarButton, TopBarButtonModule] = Webpack.getBulk(
         { filter: Filters.byKeys("subscribe", "dispatch"), searchExports: true },
@@ -85,6 +85,14 @@ const [DiscordModules, ApplicationStreamingStore, RunningGameStore, QuestsStore,
         { filter: Filters.byStrings("keyboardShortcut", "positionKey"), searchExports: true },
         { filter: Filters.bySource("iconClassName:", "children:", "badgePosition:") }
     );
+
+// Discord internals can change between updates, breaking the Webpack filter above.
+// Guard against that so the plugin doesn't crash on load; the "go to quests" button
+// will just be disabled until the filter is updated to match Discord's current code.
+const navigateToQuestHome = NavigateModule?.navigateToQuestHome;
+if (!navigateToQuestHome) {
+    console.warn("[CompleteDiscordQuest] Could not find 'navigateToQuestHome' module. Discord may have updated its internals; the quest button will be disabled until the plugin is updated.");
+}
 
 const TopBarButtonKey = Object.keys(TopBarButtonModule).find(key => {
     if (!TopBarButtonModule[key]?.render) return false;
